@@ -1,0 +1,79 @@
+
+  <%- include('partials/head') %>
+</head>
+
+<body class="bg-gray-50">
+  <%- include('partials/nav') %>
+
+  <section class="max-w-7xl mx-auto px-6 py-16">
+    <h2 class="text-3xl font-bold text-gray-800 mb-10 text-center">
+      Your Registered Homes
+    </h2>
+
+    <% if (registeredHomes.length === 0) { %>
+      <p class="text-center text-gray-500 text-lg">
+        You haven’t registered any homes yet.
+      </p>
+    <% } else { %>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <% registeredHomes.forEach(home => { %>
+
+          <div class="rounded-2xl bg-white border border-gray-200
+                      shadow-sm hover:shadow-xl transition duration-300
+                      overflow-hidden">
+
+            <!-- Card Header -->
+            <div class="w-full h-48 overflow-hidden">
+              <!-- <%= home.houseName.charAt(0).toUpperCase() %> -->
+               <img class="w-full h-full object-cover" src="<%= home.photoUrl %>" alt="" >
+            </div>
+
+            <!-- Card Body -->
+            <div class="p-6 space-y-3">
+              <h3 class="text-xl font-semibold text-gray-800">
+                <%= home.houseName %>
+              </h3>
+
+              <p class="text-sm text-gray-500">
+                A cozy place hosted by you
+              </p>
+
+              <div class="flex items-center justify-between mt-4">
+                <span class="text-lg font-bold text-rose-500">
+                  ₹ <%= home.price %> / night
+                </span>
+
+                <span class="text-xs font-semibold text-green-600 bg-green-100
+                             px-3 py-1 rounded-full">
+                  50% OFF
+                </span>
+              </div>
+
+               <div class="flex items-center justify-between mt-4">
+                <span class="text-lg font-bold text-rose-500">
+                  Rating
+                </span>
+
+                <span class="text-xs font-semibold text-green-600 bg-green-100
+                             px-3 py-1 rounded-full">
+                  <%= home.rating %> / 5
+                </span>
+              </div>
+            </div>
+
+            <!-- Card Footer -->
+            <div class="px-6 py-4 border-t text-sm text-gray-600">
+              📍 <%= home.location %>
+            </div>
+
+          </div>
+
+        <% }) %>
+      </div>
+
+    <% } %>
+  </section>
+
+</body>
+</html>

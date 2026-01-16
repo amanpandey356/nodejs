@@ -1,0 +1,26 @@
+{
+  "name": "lecture-12-dynamicui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tailwind": "tailwindcss -i ./public/input.css -o ./public/output.css --watch",
+    "start": "concurrently \"nodemon app.js\" \"npm run tailwind\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.18",
+    "body-parser": "^2.2.2",
+    "ejs": "^3.1.10",
+    "express": "^5.2.1",
+    "nodemon": "^3.1.11",
+    "tailwindcss": "^4.1.18"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
