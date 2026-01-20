@@ -2,7 +2,7 @@ const express = require('express')
 const hostRouter = express.Router();
 
 hostRouter.get('/add-home', (req, res, next)=>{
-  res.render('addHome', {pageTitle:"Register Your Home"})
+  res.render('addHome', {pageTitle:"Register Your Home", currentPage: 'addHome'})
 })
 
 const registeredHomes = []
@@ -10,7 +10,7 @@ const registeredHomes = []
 hostRouter.post('/add-home', (req, res, next)=>{
   console.log(req.body)
   registeredHomes.push({ houseName: req.body.housename, price: req.body.price, location: req.body.location, rating: req.body.rating, photoUrl: req.body.photoUrl })
-  res.render('homeAdded', {registeredHomes, pageTitle:"Home Registered Successfully"})
+  res.render('homeAdded', {registeredHomes, pageTitle:"Home Registered Successfully", currentPage: 'homeAdded'})
 })
 
 exports.registeredHomes = registeredHomes

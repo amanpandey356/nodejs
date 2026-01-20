@@ -24,7 +24,7 @@ app.use(userRouter)
 app.use('/host', hostRouter)
 
 app.use((req, res, next)=>{
-  res.render('404', {pageTitle: '404 | Page Not Found'})
+  res.render('404', {pageTitle: '404 | Page Not Found', currentPage: '404'})
   // res.end()
 })
 

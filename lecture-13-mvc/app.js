@@ -8,6 +8,7 @@ const bodyParser = require('body-parser')
 //todo Importing my Router
 const userRouter = require('./router/userRouter')
 const { hostRouter } = require('./router/hostRouter')
+const errorsController = require('./controllers/error')
 
 //todo : This is For Styling Purpose
 app.use(express.static(path.join(rootDir, 'public')))
@@ -23,10 +24,7 @@ app.set('views', 'views')
 app.use(userRouter)
 app.use('/host', hostRouter)
 
-app.use((req, res, next)=>{
-  res.render('404', {pageTitle: '404 | Page Not Found'})
-  // res.end()
-})
+app.use(errorsController.pageNotFound)
 
 //todo : running the server
 const PORT = 3000
