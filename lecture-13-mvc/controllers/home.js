@@ -24,5 +24,4 @@ exports.getHomes = (req, res, next)=>{
   // res.render('home', {registeredHomes: registeredHomes, pageTitle: 'Home Page', currentPage: 'Home'})
 }
 
-
 // exports.registeredHomes = registeredHomes
