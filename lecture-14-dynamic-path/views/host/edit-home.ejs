@@ -1,0 +1,55 @@
+<%- include('../partials/head') %>
+</head>
+
+<body>
+  <%- include('../partials/nav') %>
+
+  <div class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
+
+      <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+        <%= editing ? "Edit" : "Register" %>Your Home
+      </h1>
+
+      <!-- <form action="/host/add-home" method="POST" class="space-y-4"> -->
+      <form action="/host/<%= editing ? 'edit-home' : 'add-home' %>" method="POST" class="space-y-4">
+
+        <input name="id" type="hidden" value="<%= editing ? home.id : '' %>"/>
+
+        <input type="text" name="houseName" placeholder="Enter the name of your house" class="w-full border border-gray-300 rounded-lg px-4 py-2
+               focus:outline-none focus:ring-2 focus:ring-rose-500" required
+               value="<%= editing ? home.houseName : '' %>"
+               />
+        
+        <input type="number" placeholder="Price Per Night" name="price" class="w-full border border-gray-300 rounded-lg px-4 py-2
+               focus:outline-none focus:ring-2 focus:ring-rose-500" required 
+               value="<%= editing ? home.price : '' %>"
+               />
+        
+        <input type="text" placeholder="Location" name="location" class="w-full border border-gray-300 rounded-lg px-4 py-2
+               focus:outline-none focus:ring-2 focus:ring-rose-500" required 
+               value="<%= editing ? home.location : '' %>"
+               />
+        
+        <input type="text" placeholder="Enter Your Rating" name="rating" class="w-full border border-gray-300 rounded-lg px-4 py-2
+               focus:outline-none focus:ring-2 focus:ring-rose-500" required 
+               value="<%= editing ? home.rating : '' %>"
+               />
+
+        <input type="text" placeholder="Enter The Photo Url" name="photoUrl" class="w-full border border-gray-300 rounded-lg px-4 py-2
+               focus:outline-none focus:ring-2 focus:ring-rose-500" required 
+               value="<%= editing ? home.photoUrl : '' %>"
+               />
+
+        <button type="submit" class="w-full bg-rose-500 text-white py-2 rounded-lg
+               font-semibold hover:bg-rose-600 transition">
+          <%= editing ? "Update Home" : "Add Home" %>
+        </button>
+
+      </form>
+    </div>
+  </div>
+
+</body>
+
+</html>
