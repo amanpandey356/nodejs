@@ -15,30 +15,30 @@
           airbnb
         </a>
 
-        <a href="/homes" class="<%= currentPage === 'Home' ? 'text-red-800 font-medium' : 'text-gray-700 hover:text-rose-600 font-medium transition' %>">
-          Home-list
-        </a>
+        <% (isLoggedIn) { %>
 
-        <a href="/favourites" class="<%= currentPage === 'favourite' ? 'text-red-800 font-medium' : 'text-gray-700 hover:text-rose-600 font-medium transition' %>">
-          Favourite
-        </a>
+          <a href="/homes" class="<%= currentPage === 'Home' ? 'text-red-800 font-medium' : 'text-gray-700 hover:text-rose-600 font-medium transition' %>">
+            Home-list
+          </a>
 
-        <a href="/bookings" class="<%= currentPage === 'bookings' ? 'text-red-800 font-medium' : 'text-gray-700 hover:text-rose-600 font-medium transition' %>">
-          Bookings
-        </a>
+          <a href="/favourites" class="<%= currentPage === 'favourite' ? 'text-red-800 font-medium' : 'text-gray-700 hover:text-rose-600 font-medium transition' %>">
+            Favourite
+          </a>
 
-        <a href="/host/host-home-list" class="<%= currentPage === 'host-homes' ? 'text-red-800 font-medium' : 'text-gray-700 hover:text-rose-600 font-medium transition' %>">
-          Host Home
-        </a>
+          <a href="/bookings" class="<%= currentPage === 'bookings' ? 'text-red-800 font-medium' : 'text-gray-700 hover:text-rose-600 font-medium transition' %>">
+            Bookings
+          </a>
 
-        <a href="/host/add-home" class="<%= currentPage === 'addHome' ? 'text-red-800 font-medium' : 'text-gray-700 hover:text-rose-600 font-medium transition' %>">
-          Add Your Home
-        </a>
+          <a href="/host/host-home-list" class="<%= currentPage === 'host-homes' ? 'text-red-800 font-medium' : 'text-gray-700 hover:text-rose-600 font-medium transition' %>">
+            Host Home
+          </a>
 
-        <!-- <a href="/login" class="inline-block px-3 py-1 border border-transparent hover:border-rose-600 hover:text-rose-600 transition">
-          Login
-        </a> -->
-        <a href="/login" class="hover:text-rose-600 border border-transparent rounded-md p-1 hover:border-rose-600 font-medium transition">
+          <a href="/host/add-home" class="<%= currentPage === 'addHome' ? 'text-red-800 font-medium' : 'text-gray-700 hover:text-rose-600 font-medium transition' %>">
+            Add Your Home
+          </a>
+        <% } %>
+
+        <a href="/login" class="hover:text-rose-600 border border-transparent rounded-md p-1 hover:border-rose-600 font-medium transition <%= currentPage === 'login' ? 'text-red-800 font-medium' : 'text-gray-700 hover:text-rose-600 font-medium transition' %>">
           Login
         </a>
         
