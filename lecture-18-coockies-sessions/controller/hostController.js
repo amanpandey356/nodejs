@@ -3,7 +3,7 @@ const Home = require('../model/home')
 
 //todo let's handle the view(ejs) folder and what we need to pass and what we are getting and what we have to get from model
 exports.getAddHome = (req, res, next)=>{
-  res.render('host/edit-home', {pageTitle:"Register Your Home", currentPage: 'addHome', editing: false})
+  res.render('host/edit-home', {pageTitle:"Register Your Home", currentPage: 'addHome', editing: false, isLoggedIn: req.isLoggedIn})
 }
 
 exports.postAddHome = (req, res, next) => {
@@ -27,7 +27,7 @@ exports.getEditHome = (req, res, next) => {
       return res.redirect("/host/host-home-list")
     }
     // console.log(home);
-    res.render('host/edit-home', {pageTitle:"Edit Your Home", currentPage: 'host-homes', editing, home: home})
+    res.render('host/edit-home', {pageTitle:"Edit Your Home", currentPage: 'host-homes', editing, home: home, isLoggedIn: req.isLoggedIn})
   })
   .catch(()=>{
     return res.redirect("/host/host-home-list")
@@ -56,7 +56,7 @@ exports.postEditHome = (req, res, next) => {
 
 exports.getHostHomes = (req, res, next) => {
   Home.find().then(registeredHomes=>{
-    res.render('host/host-home-list', {registeredHomes, pageTitle: 'Host Home List', currentPage: 'host-homes'})
+    res.render('host/host-home-list', {registeredHomes, pageTitle: 'Host Home List', currentPage: 'host-homes', isLoggedIn: req.isLoggedIn})
   })
 }
 
