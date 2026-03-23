@@ -15,7 +15,7 @@ const homeSchema = mongoose.Schema({
 homeSchema.pre('findOneAndDelete', async function() {
   const homeId = this.getQuery()._id;
   await favourite.deleteMany({houseId: homeId});
-  console.log("Delete From Favourite")
+  // console.log("Delete From Favourite")
   // next()
 } )
 

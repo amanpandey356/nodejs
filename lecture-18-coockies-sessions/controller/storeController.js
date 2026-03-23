@@ -4,30 +4,31 @@ const Favourite = require('../model/favourite')
 const { ObjectId } = require('mongodb')
 
 exports.getIndex = (req, res, next) => {
+  // console.log('Is Logged in ', req.session)
   Home.find().then(registeredHomes => {
     res.render("store/index", {
-      registeredHomes: registeredHomes, pageTitle: 'airbnb Home', currentPage: 'index',
+      registeredHomes: registeredHomes, pageTitle: 'airbnb Home', currentPage: 'index', isLoggedIn: req.session.isLoggedIn,
     })
   })
 }
 
 exports.getHomes = (req, res, next) => {
   Home.find().then(registeredHomes => {
-    res.render('store/home-list', { registeredHomes, pageTitle: 'Home List', currentPage: 'Home' })
+    res.render('store/home-list', { registeredHomes, pageTitle: 'Home List', currentPage: 'Home', isLoggedIn: req.session.isLoggedIn, })
   })
 }
 
 exports.getBookings = (req, res, next) => {
-  res.render('store/bookings', { pageTitle: 'My Bookings', currentPage: 'bookings' })
+  res.render('store/bookings', { pageTitle: 'My Bookings', currentPage: 'bookings', isLoggedIn: req.session.isLoggedIn, })
 }
 
 exports.getHomeDetail = (req, res, next) => {
   const homeId = req.params.homeId
-  console.log("this is my homeId", homeId)
+  // console.log("this is my homeId", homeId)
   Home.findById(homeId)
     .then(home => {
-      console.log("This is Resultant home ", home)
-      res.render('store/home-detail', { home: home, pageTitle: 'Home Detail', currentPage: 'Home' })
+      // console.log("This is Resultant home ", home)
+      res.render('store/home-detail', { home: home, pageTitle: 'Home Detail', currentPage: 'Home', isLoggedIn: req.session.isLoggedIn, })
     })
     .catch(() => req.redirect('/homes'))
 }
@@ -41,7 +42,7 @@ exports.getFavouriteList = (req, res, next) => {
       //   const favouriteHomes = registeredHomes.filter((home) => favourites.includes(home._id.toString()))
       //   res.render('store/favourite-list', { favouriteHomes: favouriteHomes, pageTitle: 'My Favourite', currentPage: 'favourite' })
       // })
-      res.render('store/favourite-list', { favouriteHomes: favouriteHomes, pageTitle: 'My Favourite', currentPage: 'favourite' })
+      res.render('store/favourite-list', { favouriteHomes: favouriteHomes, pageTitle: 'My Favourite', currentPage: 'favourite', isLoggedIn: req.session.isLoggedIn, })
     })
 }
 
@@ -49,11 +50,11 @@ exports.postAddToFavourite = (req, res, next) => {
   const houseId = req.body.id
   Favourite.findOne({ houseId: houseId }).then((fav) => {
     if (fav) {
-      console.log('Already Favourite is present ')
+      // console.log('Already Favourite is present ')
     } else {
       fav = new Favourite({ houseId })
       fav.save().then((result) => {
-        console.log('Favourite Got Saved ', result)
+        // console.log('Favourite Got Saved ', result)
       })
     }
     res.redirect("/favourites")
@@ -71,3 +72,15 @@ exports.postRemoveFromFavourite = (req, res, next) => {
   })
 }
 
+exports.postLogout = (req, res, next) => {
+  // res.cookie("isLoggedIn", false)
+  req.session.destroy((err) => {
+    if(err) {
+      console.log('Error Destroying session: ', err)
+      return res.redirect("/")
+    }
+    // res.clearCookie('connect.sid');
+    res.redirect('/login');
+  })
+  // res.redirect("/login")
+}

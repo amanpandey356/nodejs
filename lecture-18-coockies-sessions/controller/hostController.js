@@ -3,14 +3,14 @@ const Home = require('../model/home')
 
 //todo let's handle the view(ejs) folder and what we need to pass and what we are getting and what we have to get from model
 exports.getAddHome = (req, res, next)=>{
-  res.render('host/edit-home', {pageTitle:"Register Your Home", currentPage: 'addHome', editing: false, isLoggedIn: req.isLoggedIn})
+  res.render('host/edit-home', {pageTitle:"Register Your Home", currentPage: 'addHome', editing: false, isLoggedIn: req.session.isLoggedIn})
 }
 
 exports.postAddHome = (req, res, next) => {
   const { houseName, price, location, rating, photoUrl, description } = req.body;
   const home = new Home({houseName, price, location, rating, photoUrl, description})
   home.save().then((data)=>{
-    console.log('Home Saved Successfully ', data)
+    // console.log('Home Saved Successfully ', data)
     res.redirect('host-home-list')
   }).catch(()=>{
     res.redirect('host-home-list')
@@ -27,7 +27,7 @@ exports.getEditHome = (req, res, next) => {
       return res.redirect("/host/host-home-list")
     }
     // console.log(home);
-    res.render('host/edit-home', {pageTitle:"Edit Your Home", currentPage: 'host-homes', editing, home: home, isLoggedIn: req.isLoggedIn})
+    res.render('host/edit-home', {pageTitle:"Edit Your Home", currentPage: 'host-homes', editing, home: home, isLoggedIn: req.session.isLoggedIn})
   })
   .catch(()=>{
     return res.redirect("/host/host-home-list")
@@ -44,7 +44,7 @@ exports.postEditHome = (req, res, next) => {
     home.photoUrl = photoUrl,
     home.description = description;
     home.save().then((result)=>{
-      console.log('Home Updated Successfully ', result)
+      // console.log('Home Updated Successfully ', result)
     }).catch(err=>{
       console.log('Error While Updating record ', err)
     })
@@ -55,8 +55,9 @@ exports.postEditHome = (req, res, next) => {
 }
 
 exports.getHostHomes = (req, res, next) => {
+  // console.log('Hey')
   Home.find().then(registeredHomes=>{
-    res.render('host/host-home-list', {registeredHomes, pageTitle: 'Host Home List', currentPage: 'host-homes', isLoggedIn: req.isLoggedIn})
+    res.render('host/host-home-list', {registeredHomes, pageTitle: 'Host Home List', currentPage: 'host-homes', isLoggedIn: req.session.isLoggedIn})
   })
 }
 
