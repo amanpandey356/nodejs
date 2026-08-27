@@ -8,7 +8,7 @@ let product = a*b
 
 let data = `Sum: ${sum}\nProduct: ${product}`
 
-fs.writeFile('output.txt', data, (err) => {
+fs.writeFile('output.txt', data, (err) => {  //todo Asynchronous (non-blocking)
   if(err) throw err
   console.log('Date Written in File')
 })

@@ -28,6 +28,7 @@ function requestListener(req, res) {
     res.write("<h1>Welcome to Men Section of shopping</h1>");
     res.write("</body>");
     res.write("</html>");
+    return res.end()
   } else if (req.url === "/women") {
     res.write("<html>");
     res.write("<head> <title>Women Section</title> </head>");

@@ -26,28 +26,29 @@ function requestListener(req, res){
   } else if(req.url === "/calculator-result" && req.method==="POST"){
 
     //! Calling the html page right here
-    // const body = []
-    // let myNum = {}
-    // req.on('data', chunk=>{
-    //   body.push(chunk)
-    // })
-    // req.on('end',()=>{
-    //   const fullBody = Buffer.concat(body).toString()
-    //   const params = new URLSearchParams(fullBody)
-    //   const bodyObject = Object.fromEntries(params)
-    //   const num1 = Number(bodyObject.num1)
-    //   const num2 = Number(bodyObject.num2)
-    //   const sum = num1 + num2
-    //   console.log(sum)
-    //   res.write('<html>')
-    //   res.write('<head> <title>Calculator-result</title> </head>')
-    //   res.write('<body>')
-    //   res.write('<h1>Here You can see the result of your calculation</h1>')
-    //   res.write(`<h1>The Sum is : ${sum}</h1>`)
-    //   res.write('</body>')
-    //   res.write('</html>')
-    //   res.end()
-    // })
+    const body = []
+    let myNum = {}
+    req.on('data', chunk=>{
+      console.log('Hey The Data is Still Coming')
+      body.push(chunk)
+    })
+    req.on('end',()=>{
+      const fullBody = Buffer.concat(body).toString()
+      const params = new URLSearchParams(fullBody)
+      const bodyObject = Object.fromEntries(params)
+      const num1 = Number(bodyObject.num1)
+      const num2 = Number(bodyObject.num2)
+      const sum = num1 + num2
+      console.log('The Sum is ', sum)
+      res.write('<html>')
+      res.write('<head> <title>Calculator-result</title> </head>')
+      res.write('<body>')
+      res.write('<h1>Here You can see the result of your calculation</h1>')
+      res.write(`<h1>The Sum is : ${sum}</h1>`)
+      res.write('</body>')
+      res.write('</html>')
+      res.end()
+    })
 
     //todo creating separate module
     return sumRequestHandler(req, res)
