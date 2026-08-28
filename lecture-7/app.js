@@ -9,6 +9,7 @@ const server = http.createServer((req, res)=>{
     <h1>Hello World</h1>
     <p> This is a Paragraph That I added to check the nodemon <p>
     <h3>Hey nodemom is working absolutely fine<h3> 
+    <h2>Hello World How are you: nodemon updated</h2>
   <body>`)
   res.write('</html>')
   res.end()
