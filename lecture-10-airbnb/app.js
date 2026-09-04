@@ -25,7 +25,7 @@ app.use((req, res, next)=>{
 
   // res.status(404).sendFile(path.join(__dirname, './', 'views', '404.html'))
   
-  res.status(404).sendFile(path.join(rootDir, './', 'views', '404.html'))
+  res.status(404).sendFile(path.join(rootDir, './', 'views', '404.html')) // './' is optional
 })
 
 // app.get("/",(req, res, next)=>{
@@ -51,7 +51,7 @@ app.use((req, res, next)=>{
 //     <a href="/"> Go To Home </a>
 //     `)
 //   })
-  
+
 const PORT = 3000;
 app.listen(PORT, ()=>{
   console.log(`your app is running on address http://localhost:${PORT}`);
