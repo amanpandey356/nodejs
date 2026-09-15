@@ -15,3 +15,4 @@ hostRouter.post('/add-home', (req, res, next)=>{
 
 exports.registeredHomes = registeredHomes
 exports.hostRouter = hostRouter
+
