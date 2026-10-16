@@ -1,0 +1,54 @@
+<%- include('../partials/head') %>
+</head>
+
+<body>
+  <%- include('../partials/nav') %>
+
+  <div class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
+
+      <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+        Login With Info
+      </h1>
+
+      <form action="/login" method="POST" class="space-y-4">
+
+        <input type="email" name="username" placeholder="Enter Your EmailId / Username" class="w-full border border-gray-300 rounded-lg px-4 py-2
+               focus:outline-none focus:ring-2 focus:ring-rose-500" required
+               />
+        
+        <input type="password" placeholder="Enter Password" name="password" class="w-full border border-gray-300 rounded-lg px-4 py-2
+               focus:outline-none focus:ring-2 focus:ring-rose-500" required
+               />
+        
+        <!-- <input type="text" placeholder="Location" name="location" class="w-full border border-gray-300 rounded-lg px-4 py-2
+               focus:outline-none focus:ring-2 focus:ring-rose-500" required 
+               value="<%= editing ? home.location : '' %>"
+               />
+        
+        <input type="text" placeholder="Enter Your Rating" name="rating" class="w-full border border-gray-300 rounded-lg px-4 py-2
+               focus:outline-none focus:ring-2 focus:ring-rose-500" required 
+               value="<%= editing ? home.rating : '' %>"
+               />
+
+        <input type="text" placeholder="Enter The Photo Url" name="photoUrl" class="w-full border border-gray-300 rounded-lg px-4 py-2
+               focus:outline-none focus:ring-2 focus:ring-rose-500" required 
+               value="<%= editing ? home.photoUrl : '' %>"
+               />
+
+        <textarea type="text" placeholder="Tell Something About Your Home" name="description" class="w-full border border-gray-300 rounded-lg px-4 py-2
+               focus:outline-none focus:ring-2 focus:ring-rose-500" required 
+        ><%= editing ? home.description : '' %></textarea> -->
+
+        <button type="submit" class="w-full bg-rose-500 text-white py-2 rounded-lg
+               font-semibold hover:bg-rose-600 transition cursor-pointer">
+          Sign in
+        </button>
+
+      </form>
+    </div>
+  </div>
+
+</body>
+
+</html>
