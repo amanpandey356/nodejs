@@ -39,7 +39,17 @@
         <% } %>
 
         <% if(!isLoggedIn){ %>
-          <a href="/login" class="hover:text-rose-600 border border-transparent rounded-md p-1 hover:border-rose-600 font-medium transition <%= currentPage === 'login' ? 'text-red-800 font-medium' : 'text-gray-700 hover:text-rose-600 font-medium transition' %>">
+          <a
+            href="/signup"
+            class="
+            text-gray-700
+            <%= currentPage === 'signup' ? 'text-red-800 font-medium' : 'text-gray-700 hover:text-rose-600 font-medium transition' %>
+            ">
+            Sign Up
+          </a>
+          <a
+            href="/login"
+            class="hover:text-rose-600 border border-transparent rounded-md p-1 hover:border-rose-600 font-medium transition <%= currentPage === 'login' ? 'text-red-800 font-medium' : 'text-gray-700 hover:text-rose-600 font-medium transition' %>">
             Login
           </a>
         <% } else { %>

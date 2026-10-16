@@ -12,3 +12,7 @@ exports.postLogin = (req, res, next) => {
   // req.isLoggedIn = true;
   res.redirect('/')
 }
+
+exports.getSignup = (req, res, next) => {
+  res.render("auth/signup", {pageTitle: 'Sign up', currentPage: 'signup', editing: false, isLoggedIn: false})
+}
