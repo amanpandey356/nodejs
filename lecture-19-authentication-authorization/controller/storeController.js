@@ -7,19 +7,36 @@ exports.getIndex = (req, res, next) => {
   // console.log('Is Logged in ', req.session)
   Home.find().then(registeredHomes => {
     res.render("store/index", {
-      registeredHomes: registeredHomes, pageTitle: 'airbnb Home', currentPage: 'index', isLoggedIn: req.session.isLoggedIn,
+      registeredHomes: registeredHomes,
+      pageTitle: 'airbnb Home',
+      currentPage: 'index',
+      isLoggedIn: req.session.isLoggedIn,
+      user: req.session.user,
     })
   })
 }
 
 exports.getHomes = (req, res, next) => {
   Home.find().then(registeredHomes => {
-    res.render('store/home-list', { registeredHomes, pageTitle: 'Home List', currentPage: 'Home', isLoggedIn: req.session.isLoggedIn, })
+    res.render('store/home-list', {
+      registeredHomes,
+      pageTitle: 'Home List',
+      currentPage: 'Home',
+      isLoggedIn: req.session.isLoggedIn,
+      user: req.session.user,
+    }
+  )
   })
 }
 
 exports.getBookings = (req, res, next) => {
-  res.render('store/bookings', { pageTitle: 'My Bookings', currentPage: 'bookings', isLoggedIn: req.session.isLoggedIn, })
+  res.render('store/bookings', {
+    pageTitle: 'My Bookings',
+    currentPage: 'bookings',
+    isLoggedIn: req.session.isLoggedIn,
+    user: req.session.user,
+  }
+)
 }
 
 exports.getHomeDetail = (req, res, next) => {
@@ -28,12 +45,20 @@ exports.getHomeDetail = (req, res, next) => {
   Home.findById(homeId)
     .then(home => {
       // console.log("This is Resultant home ", home)
-      res.render('store/home-detail', { home: home, pageTitle: 'Home Detail', currentPage: 'Home', isLoggedIn: req.session.isLoggedIn, })
+      res.render('store/home-detail', {
+        home: home,
+        pageTitle: 'Home Detail',
+        currentPage: 'Home',
+        isLoggedIn: req.session.isLoggedIn,
+        user: req.session.user,
+      }
+    )
     })
     .catch(() => req.redirect('/homes'))
 }
 
 exports.getFavouriteList = (req, res, next) => {
+  
   Favourite.find()
     .populate('houseId')
     .then(favourites => {
@@ -42,7 +67,14 @@ exports.getFavouriteList = (req, res, next) => {
       //   const favouriteHomes = registeredHomes.filter((home) => favourites.includes(home._id.toString()))
       //   res.render('store/favourite-list', { favouriteHomes: favouriteHomes, pageTitle: 'My Favourite', currentPage: 'favourite' })
       // })
-      res.render('store/favourite-list', { favouriteHomes: favouriteHomes, pageTitle: 'My Favourite', currentPage: 'favourite', isLoggedIn: req.session.isLoggedIn, })
+      res.render('store/favourite-list', {
+        favouriteHomes: favouriteHomes,
+        pageTitle: 'My Favourite',
+        currentPage: 'favourite',
+        isLoggedIn: req.session.isLoggedIn,
+        user: req.session.user,
+      }
+    )
     })
 }
 

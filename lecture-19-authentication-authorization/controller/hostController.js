@@ -3,7 +3,15 @@ const Home = require('../model/home')
 
 //todo let's handle the view(ejs) folder and what we need to pass and what we are getting and what we have to get from model
 exports.getAddHome = (req, res, next)=>{
-  res.render('host/edit-home', {pageTitle:"Register Your Home", currentPage: 'addHome', editing: false, isLoggedIn: req.session.isLoggedIn})
+  res.render('host/edit-home',
+    {
+      pageTitle:"Register Your Home",
+      currentPage: 'addHome',
+      editing: false,
+      isLoggedIn: req.session.isLoggedIn,
+      user: req.session.user,
+    }
+  )
 }
 
 exports.postAddHome = (req, res, next) => {
@@ -27,7 +35,15 @@ exports.getEditHome = (req, res, next) => {
       return res.redirect("/host/host-home-list")
     }
     // console.log(home);
-    res.render('host/edit-home', {pageTitle:"Edit Your Home", currentPage: 'host-homes', editing, home: home, isLoggedIn: req.session.isLoggedIn})
+    res.render('host/edit-home', {
+      pageTitle:"Edit Your Home",
+      currentPage: 'host-homes',
+      editing,
+      home: home,
+      isLoggedIn: req.session.isLoggedIn,
+      user: req.session.user,
+    }
+  )
   })
   .catch(()=>{
     return res.redirect("/host/host-home-list")
@@ -57,7 +73,14 @@ exports.postEditHome = (req, res, next) => {
 exports.getHostHomes = (req, res, next) => {
   // console.log('Hey')
   Home.find().then(registeredHomes=>{
-    res.render('host/host-home-list', {registeredHomes, pageTitle: 'Host Home List', currentPage: 'host-homes', isLoggedIn: req.session.isLoggedIn})
+    res.render('host/host-home-list', {
+      registeredHomes,
+      pageTitle: 'Host Home List',
+      currentPage: 'host-homes',
+      isLoggedIn: req.session.isLoggedIn,
+      user: req.session.user,
+    }
+  )
   })
 }
 

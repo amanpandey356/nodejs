@@ -17,25 +17,31 @@
 
         <% if (isLoggedIn) { %>
 
-          <a href="/homes" class="<%= currentPage === 'Home' ? 'text-red-800 font-medium' : 'text-gray-700 hover:text-rose-600 font-medium transition' %>">
-            Home-list
-          </a>
+          <% if (user && user.userType === 'guest') { %>
 
-          <a href="/favourites" class="<%= currentPage === 'favourite' ? 'text-red-800 font-medium' : 'text-gray-700 hover:text-rose-600 font-medium transition' %>">
-            Favourite
-          </a>
+            <a href="/homes" class="<%= currentPage === 'Home' ? 'text-red-800 font-medium' : 'text-gray-700 hover:text-rose-600 font-medium transition' %>">
+              Home-list
+            </a>
 
-          <a href="/bookings" class="<%= currentPage === 'bookings' ? 'text-red-800 font-medium' : 'text-gray-700 hover:text-rose-600 font-medium transition' %>">
-            Bookings
-          </a>
+            <a href="/favourites" class="<%= currentPage === 'favourite' ? 'text-red-800 font-medium' : 'text-gray-700 hover:text-rose-600 font-medium transition' %>">
+              Favourite
+            </a>
 
-          <a href="/host/host-home-list" class="<%= currentPage === 'host-homes' ? 'text-red-800 font-medium' : 'text-gray-700 hover:text-rose-600 font-medium transition' %>">
-            Host Home
-          </a>
+            <a href="/bookings" class="<%= currentPage === 'bookings' ? 'text-red-800 font-medium' : 'text-gray-700 hover:text-rose-600 font-medium transition' %>">
+              Bookings
+            </a>
+          
+          <% } else { %>
 
-          <a href="/host/add-home" class="<%= currentPage === 'addHome' ? 'text-red-800 font-medium' : 'text-gray-700 hover:text-rose-600 font-medium transition' %>">
-            Add Your Home
-          </a>
+            <a href="/host/host-home-list" class="<%= currentPage === 'host-homes' ? 'text-red-800 font-medium' : 'text-gray-700 hover:text-rose-600 font-medium transition' %>">
+              Host Home
+            </a>
+
+            <a href="/host/add-home" class="<%= currentPage === 'addHome' ? 'text-red-800 font-medium' : 'text-gray-700 hover:text-rose-600 font-medium transition' %>">
+              Add Your Home
+            </a>
+          
+          <% } %>
         <% } %>
 
         <% if(!isLoggedIn){ %>
