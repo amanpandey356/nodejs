@@ -17,6 +17,16 @@
         </p>
       </div>
 
+      <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+        <div role="alert" class="mb-5 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          <ul class="list-inside list-disc space-y-1">
+            <% errors.forEach((error) => { %>
+              <li><%= error %></li>
+            <% }) %>
+          </ul>
+        </div>
+      <% } %>
+
       <form action="/signup" method="POST" class="space-y-4">
 
         <!-- First name and last name -->
@@ -32,6 +42,7 @@
               name="firstName"
               placeholder="First name"
               autocomplete="given-name"
+              value="<%= oldInput && oldInput.firstName ? oldInput.firstName : '' %>"
               required
               class="w-full rounded-lg border border-gray-300 px-3 py-3 text-sm outline-none transition placeholder:text-gray-400 focus:border-[#FF385C] focus:ring-1 focus:ring-[#FF385C]"
             />
@@ -48,6 +59,7 @@
               name="lastName"
               placeholder="Last name"
               autocomplete="family-name"
+              value="<%= oldInput && oldInput.lastName ? oldInput.lastName : '' %>"
               required
               class="w-full rounded-lg border border-gray-300 px-3 py-3 text-sm outline-none transition placeholder:text-gray-400 focus:border-[#FF385C] focus:ring-1 focus:ring-[#FF385C]"
             />
@@ -64,6 +76,7 @@
             type="email"
             id="email"
             name="email"
+            value="<%= oldInput && oldInput.email ? oldInput.email : '' %>"
             placeholder="Enter your email"
             autocomplete="email"
             required
@@ -81,6 +94,7 @@
             id="userType"
             name="userType"
             required
+            value="<%= oldInput && oldInput.userType ? oldInput.userType : '' %>"
             class="w-full rounded-lg border border-gray-300 bg-white px-3 py-3 text-sm text-[#222222] outline-none transition focus:border-[#FF385C] focus:ring-1 focus:ring-[#FF385C]"
           >
             <option value="" disabled selected>Select account type</option>
@@ -99,6 +113,7 @@
             type="password"
             id="password"
             name="password"
+            value="<%= oldInput && oldInput.password ? oldInput.password : '' %>"
             placeholder="Create a password"
             autocomplete="new-password"
             minlength="8"
@@ -156,6 +171,7 @@
         <button
           type="submit"
           class="w-full rounded-lg bg-[#FF385C] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#E31C5F] focus:outline-none focus:ring-2 focus:ring-[#FF385C] focus:ring-offset-2 active:scale-[0.99]"
+          action="/signup" method="POST"
         >
           Create account
         </button>
