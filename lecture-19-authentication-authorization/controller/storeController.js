@@ -1,7 +1,8 @@
 //todo local module
 const Home = require('../model/home')
-const Favourite = require('../model/favourite')
+// const Favourite = require('../model/favourite')
 const { ObjectId } = require('mongodb')
+const User = require('../model/user')
 
 exports.getIndex = (req, res, next) => {
   // console.log('Is Logged in ', req.session)
@@ -57,25 +58,35 @@ exports.getHomeDetail = (req, res, next) => {
     .catch(() => req.redirect('/homes'))
 }
 
-exports.getFavouriteList = (req, res, next) => {
-  
-  Favourite.find()
-    .populate('houseId')
-    .then(favourites => {
-      const favouriteHomes = favourites.map(fav => fav.houseId)
-      // Home.find().then(registeredHomes => {
-      //   const favouriteHomes = registeredHomes.filter((home) => favourites.includes(home._id.toString()))
-      //   res.render('store/favourite-list', { favouriteHomes: favouriteHomes, pageTitle: 'My Favourite', currentPage: 'favourite' })
-      // })
-      res.render('store/favourite-list', {
-        favouriteHomes: favouriteHomes,
-        pageTitle: 'My Favourite',
-        currentPage: 'favourite',
-        isLoggedIn: req.session.isLoggedIn,
-        user: req.session.user,
-      }
-    )
-    })
+exports.getFavouriteList = async (req, res, next) => {
+  const userId = req.session.user._id;
+  const user = await User.findById(userId).populate('favourites')
+  res.render('store/favourite-list', {
+    favouriteHomes: user.favourites,
+    pageTitle: 'My Favourites',
+    currentPage: 'favourites',
+    isLoggedIn: req.session.isLoggedIn,
+    user: req.session.user,
+  }
+  );
+
+  // Favourite.find()
+  //   .populate('houseId')
+  //   .then(favourites => {
+  //     const favouriteHomes = favourites.map(fav => fav.houseId)
+  //     // Home.find().then(registeredHomes => {
+  //     //   const favouriteHomes = registeredHomes.filter((home) => favourites.includes(home._id.toString()))
+  //     //   res.render('store/favourite-list', { favouriteHomes: favouriteHomes, pageTitle: 'My Favourite', currentPage: 'favourite' })
+  //     // })
+  //     res.render('store/favourite-list', {
+  //       favouriteHomes: favouriteHomes,
+  //       pageTitle: 'My Favourite',
+  //       currentPage: 'favourite',
+  //       isLoggedIn: req.session.isLoggedIn,
+  //       user: req.session.user,
+  //     }
+  //   )
+  //   })
 }
 
 exports.postAddToFavourite = (req, res, next) => {
